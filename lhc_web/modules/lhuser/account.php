@@ -124,8 +124,6 @@ if (!isset($UserData)) {
 
 $tpl->set('editdepartaments',$allowEditDepartaments);
 
-$tpl->set('user',$UserData);
-
 if ( erLhcoreClassUser::instance()->hasAccessTo('lhuser','personalcannedmsg') ) {
 	
 	/**
@@ -188,6 +186,12 @@ if ( erLhcoreClassUser::instance()->hasAccessTo('lhuser','personalcannedmsg') ) 
 	
 }
 
+erLhcoreClassChatEventDispatcher::getInstance()->dispatch('user.account', array('userData' => & $UserData, 'tpl' => & $tpl));
+
+$tpl->set('user', $UserData);
+
 $Result['content'] = $tpl->fetch();
+
+erLhcoreClassChatEventDispatcher::getInstance()->dispatch('user.account_result', array('result' => & $Result));
 
 ?>

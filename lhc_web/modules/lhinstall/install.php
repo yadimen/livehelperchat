@@ -478,7 +478,10 @@ switch ((int)$Params['user_parameters']['step_id']) {
         	       `static_css_content` longtext NOT NULL,
         	       `header_content` text NOT NULL,
         	       `header_css` text NOT NULL,
-        	       PRIMARY KEY (`id`)
+        	       `user_id` int(11) NOT NULL,
+        	       `additional_data` text NOT NULL,
+        	       PRIMARY KEY (`id`),
+        	       KEY `user_id` (`user_id`)        	       
         	   ) DEFAULT CHARSET=utf8");
 
         	   $db->query("CREATE TABLE `lh_chat_paid` ( 

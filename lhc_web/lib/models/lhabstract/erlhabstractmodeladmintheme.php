@@ -22,6 +22,8 @@ class erLhAbstractModelAdminTheme {
             'static_content' => $this->static_content,
             'static_js_content' => $this->static_js_content,
             'static_css_content' => $this->static_css_content,
+		    'user_id' => $this->user_id,
+		    'additional_data' => $this->additional_data
 		);
 
 		return $stateArray;
@@ -129,4 +131,7 @@ class erLhAbstractModelAdminTheme {
 	public $static_content = '';
 	public $static_js_content = '';
 	public $static_css_content = '';
+	public $user_id = 0;
+	public $additional_data = '';
+	
 }

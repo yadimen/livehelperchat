@@ -44,4 +44,16 @@ $def->properties['static_css_content']->columnName   = 'static_css_content';
 $def->properties['static_css_content']->propertyName = 'static_css_content';
 $def->properties['static_css_content']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
 
+// Assigned to user
+$def->properties['user_id'] = new ezcPersistentObjectProperty();
+$def->properties['user_id']->columnName   = 'user_id';
+$def->properties['user_id']->propertyName = 'user_id';
+$def->properties['user_id']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
+// Additional data if need save
+$def->properties['additional_data'] = new ezcPersistentObjectProperty();
+$def->properties['additional_data']->columnName   = 'additional_data';
+$def->properties['additional_data']->propertyName = 'additional_data';
+$def->properties['additional_data']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
 return $def;
