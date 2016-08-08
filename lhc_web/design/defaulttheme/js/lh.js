@@ -1808,6 +1808,7 @@ function lh(){
 					textArea.removeClass('edit-mode');	
 					textArea.removeAttr('data-msgid');
 					$('#msg-'+pdata.msgid).replaceWith(data.msg);
+					ee.emitEvent('editmsguser', [inst, data]);
 					return true;
 				}
 			});			
