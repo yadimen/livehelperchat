@@ -1737,7 +1737,8 @@ function lh(){
         		if (data.error == 'f') {        	
 	        		if (LHCCallbacks.addmsguserchatbox) {
 	        			LHCCallbacks.addmsguserchatbox(inst,{chat_id:inst.chat_id,data:data});
-		        	};
+		        	}
+					ee.emitEvent('addmsguserchatbox', [inst,{chat_id:inst.chat_id,data:data}]);
 		        		        	
 		        	inst.syncusercall();  
 	        	} else {
@@ -1829,7 +1830,8 @@ function lh(){
 		        	if (data.error == 'f') {
 			        	if (LHCCallbacks.addmsguser) {
 			        		LHCCallbacks.addmsguser(inst,data);
-			        	};
+			        	}
+						ee.emitEvent('addmsguser', [inst, data]);
 			        	
 			        	inst.syncusercall();
 		        	} else {
@@ -1896,7 +1898,8 @@ function lh(){
 		        	if (data.error == 'f') {
 			        	if (LHCCallbacks.addmsguser) {
 			        		LHCCallbacks.addmsguser(inst,data);
-			        	};
+			        	}
+						ee.emitEvent('addmsguser', [inst, data]);
 			        	
 			        	inst.syncusercall();
 		        	}
