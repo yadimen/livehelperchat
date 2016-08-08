@@ -41,7 +41,7 @@
                             return false;
                         }
                     });
-                    lhinst.afterChatWidgetInit();
+                    ee.emitEvent('afterChatWidgetInit');
                 </script>
             </div>
 

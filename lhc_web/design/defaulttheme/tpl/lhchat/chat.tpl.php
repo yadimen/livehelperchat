@@ -77,7 +77,7 @@
             }
 		});		
         lhinst.initTypingMonitoringUser('<?php echo $chat_id?>');
-        lhinst.afterUserChatInit();
+        ee.emitEvent('afterUserChatInit');
         </script>
         
     </div>

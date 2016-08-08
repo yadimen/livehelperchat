@@ -41,7 +41,7 @@
 			}
 		});
 		lhinst.initTypingMonitoringAdmin('<?php echo $chat->id?>');
-		lhinst.afterAdminChatInit('<?php echo $chat->id?>');
+		ee.emitEvent('afterAdminChatInit',['<?php echo $chat->id?>']);
 		</script>
 
 		<?php include(erLhcoreClassDesign::designtpl('lhchat/part/after_text_area_block.tpl.php')); ?>

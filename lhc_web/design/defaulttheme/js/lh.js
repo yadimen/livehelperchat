@@ -619,7 +619,8 @@ function lh(){
 		        
 		        if (LHCCallbacks.syncusercall) {
 	        		LHCCallbacks.syncusercall(inst,data);
-	        	};
+	        	}
+				ee.emitEvent('syncusercall', [inst, data]);
 		        
 	    	}).fail(function(){
 	    		inst.syncroRequestSend = false;
@@ -1053,7 +1054,8 @@ function lh(){
 		    		$.postJSON(www_dir + inst.addmsgurl + chat_id, pdata , function(data){
 		    			if (LHCCallbacks.addmsgadmin) {
 		            		LHCCallbacks.addmsgadmin(chat_id);
-		            	};
+		            	}
+						ee.emitEvent('addmsgadmin', [chat_id]);
 		    			lhinst.syncadmincall();
 		    			return true;
 		    		});
@@ -1066,7 +1068,8 @@ function lh(){
 	    		$.postJSON(this.wwwDir + this.addmsgurl + chat_id, pdata , function(data){
 	    			if (LHCCallbacks.addmsgadmin) {
 	            		LHCCallbacks.addmsgadmin(chat_id);
-	            	};
+	            	}
+					ee.emitEvent('addmsgadmin', [chat_id]);
 	    			lhinst.syncadmincall();
 	    			return true;
 	    		});
@@ -1315,7 +1318,8 @@ function lh(){
 
         	        if (LHCCallbacks.syncadmincall) {
     	        		LHCCallbacks.syncadmincall(lhinst,data);
-    	        	};
+    	        	}
+					ee.emitEvent('syncadmincall', [lhinst, data]);
         	        
         	        
             	}).fail(function(){
@@ -1560,8 +1564,9 @@ function lh(){
 					
 					if (LHCCallbacks.addmsgadmin) {
 		        		LHCCallbacks.addmsgadmin(chat_id);
-		        	};
-		        	
+		        	}
+					ee.emitEvent('addmsgadmin', [chat_id]);
+
 					return true;
 				}
 			});
@@ -1586,12 +1591,13 @@ function lh(){
 					
 					if (LHCCallbacks.addmsgadmin) {
 		        		LHCCallbacks.addmsgadmin(chat_id);
-		        	};
-		        	
+		        	}
+					ee.emitEvent('addmsgadmin', [chat_id]);
+
 		        	if (data.r != '') {
 	            		$('#messagesBlock-'+chat_id).append(data.r);
 		                $('#messagesBlock-'+chat_id).animate({ scrollTop: $("#messagesBlock-"+chat_id).prop("scrollHeight") }, 1000);
-	            	};
+	            	}
 	            	
 					lhinst.syncadmincall();		
 					
@@ -1625,12 +1631,13 @@ function lh(){
 		        		        	
 		        	if (LHCCallbacks.addmsgadmin) {
 		        		LHCCallbacks.addmsgadmin(elementAdd.chat_id);
-		        	};
+		        	}
+					ee.emitEvent('addmsgadmin', [chat_id]);
 		        	
 		        	if (data.r != '') {
 	            		$('#messagesBlock-'+elementAdd.chat_id).append(data.r);
 		                $('#messagesBlock-'+elementAdd.chat_id).animate({ scrollTop: $("#messagesBlock-"+elementAdd.chat_id).prop("scrollHeight") }, 1000);
-	            	};
+	            	}
 	            	
 	            	lhinst.syncadmincall();	
 	            	
@@ -1664,6 +1671,7 @@ function lh(){
 					if (LHCCallbacks.editPrevious) {
 						LHCCallbacks.editPrevious(chat_id, data);
 					}
+					ee.emitEvent('editPrevious', [chat_id, data]);
 				}
 			});			
 		}
@@ -1681,6 +1689,7 @@ function lh(){
 					if (LHCCallbacks.editPreviousUser) {
 						LHCCallbacks.editPreviousUser(data);
 					}
+					ee.emitEvent('editPreviousUser', [data]);
 				}
 			});			
 		}
