@@ -901,7 +901,7 @@ function lh(){
 		$('#embed-button-'+file_id).addClass('success');	
 	},
 	
-	this.sendLinkToEditor = function(chat_id, embed_code,file_id) {
+	this.sendLinkToEditor = function(chat_id, embed_code, file_id, file_name) {
 		var val = window.parent.$('#CSChatMessage-'+chat_id).val();		
 		window.parent.$('#CSChatMessage-'+chat_id).val(((val != '') ? val+"\n" : val)+embed_code);
 		$('#embed-button-'+file_id).addClass('success');	
