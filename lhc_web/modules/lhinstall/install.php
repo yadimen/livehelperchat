@@ -973,6 +973,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
         	   	  `page_title` varchar(250) NOT NULL,
                   `referrer` text NOT NULL,
                   `chat_id` int(11) NOT NULL,
+                  `customer_user_id` int(11) NOT NULL,
                   `invitation_seen_count` int(11) NOT NULL,
         	   	  `invitation_id` int(11) NOT NULL,
                   `last_visit` int(11) NOT NULL,
@@ -1011,6 +1012,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
         	   	  `online_attr` text NOT NULL,
                   PRIMARY KEY (`id`),
                   KEY `vid` (`vid`),
+                  KEY `customer_user_id` (`customer_user_id`),
 				  KEY `dep_id` (`dep_id`),
 				  KEY `last_visit_dep_id` (`last_visit`,`dep_id`)
                 ) DEFAULT CHARSET=utf8;");

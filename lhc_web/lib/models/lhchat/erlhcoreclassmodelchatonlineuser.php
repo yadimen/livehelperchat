@@ -12,7 +12,8 @@ class erLhcoreClassModelChatOnlineUser
             'current_page' => $this->current_page,
             'invitation_seen_count' => $this->invitation_seen_count,
             'page_title' => $this->page_title,
-            'chat_id' => $this->chat_id, // For future
+            'chat_id' => $this->chat_id,
+            'customer_user_id' => $this->customer_user_id,
             'last_visit' => $this->last_visit,
             'first_visit' => $this->first_visit,
             'user_agent' => $this->user_agent,
@@ -767,6 +768,7 @@ class erLhcoreClassModelChatOnlineUser
     public $current_page = '';
     public $user_agent = '';
     public $chat_id = 0;
+    public $customer_user_id = 0;
     public $last_visit = 0;
     public $first_visit = 0;
     public $user_country_name = '';

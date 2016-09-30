@@ -29,6 +29,11 @@ $def->properties['page_title']->columnName   = 'page_title';
 $def->properties['page_title']->propertyName = 'page_title';
 $def->properties['page_title']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
 
+$def->properties['customer_user_id'] = new ezcPersistentObjectProperty();
+$def->properties['customer_user_id']->columnName   = 'customer_user_id';
+$def->properties['customer_user_id']->propertyName = 'customer_user_id';
+$def->properties['customer_user_id']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
 $def->properties['chat_id'] = new ezcPersistentObjectProperty();
 $def->properties['chat_id']->columnName   = 'chat_id';
 $def->properties['chat_id']->propertyName = 'chat_id';
