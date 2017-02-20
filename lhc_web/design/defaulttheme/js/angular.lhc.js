@@ -170,6 +170,10 @@ lhcAppControllers.controller('LiveHelperChatCtrl',['$scope','$http','$location',
 	this.closedd_products = this.restoreLocalSetting('closedd_products',[],true);
 	this.closeddNames = [];
 
+	// Storage for notifications
+	this.statusNotifications = [];
+	this.isListLoaded = false;
+	
 	this.widgetsItems = new Array();
 	this.widgetsItems.push('actived');
 	this.widgetsItems.push('departmentd');
@@ -540,10 +544,35 @@ lhcAppControllers.controller('LiveHelperChatCtrl',['$scope','$http','$location',
 					
 					var notifiedChatsIds = [];
 					
-					angular.forEach(data.result, function(item, key){					
+					var currentStatusNotifications = [];
+					// _that.statusNotifications; Previous event status noitifications
+					var chatsToNotify = [];
+					
+					angular.forEach(data.result, function(item, key) {
+												
 						$scope[key] = item;					
 						if ( item.last_id_identifier ) {
-		                    if (lhinst.trackLastIDS[item.last_id_identifier] == undefined ) {
+							
+							currentStatusNotifications = [];
+							
+							angular.forEach(item.list, function(itemList, keyItem) {
+								
+								var userId = (typeof itemList.user_id !== 'undefined' ? itemList.user_id : 0);
+								var identifierElement = itemList.id + '_' + userId;
+
+								currentStatusNotifications.push(identifierElement);
+
+								if (_that.isListLoaded == true && typeof _that.statusNotifications[item.last_id_identifier] !== 'undefined' && ((_that.statusNotifications[item.last_id_identifier].indexOf(identifierElement) == -1 && userId == 0) || (_that.statusNotifications[item.last_id_identifier].indexOf(identifierElement) == -1 && userId == confLH.user_id))
+								) {
+									chatsToNotify.push(itemList.id);									
+							}});
+
+							_that.statusNotifications[item.last_id_identifier] = currentStatusNotifications;
+							
+							lhinst.playSoundNewAction(item.last_id_identifier,parseInt(item.last_id),(item.nick ? item.nick : 'Live Help'),(item.msg ? item.msg : confLH.transLation.new_chat), item.nt, item.uid);
+							
+							
+		                    /*if (lhinst.trackLastIDS[item.last_id_identifier] == undefined ) {
 		                    	lhinst.trackLastIDS[item.last_id_identifier] = parseInt(item.last_id);
 		                    	
 		                    	if (typeof item.uid != 'undefined') {
@@ -591,7 +620,7 @@ lhcAppControllers.controller('LiveHelperChatCtrl',['$scope','$http','$location',
 		                    
 		                    if (parseInt(item.last_id) > 0 && _that.lastidEvent == item.last_id) {
 		                    	hasPendingItems = true;
-		                    };	                    
+		                    };*/	                    
 		                };
 					});	
 					
@@ -632,6 +661,8 @@ lhcAppControllers.controller('LiveHelperChatCtrl',['$scope','$http','$location',
 						$scope.loadChatList();
 					},confLH.back_office_sinterval);
 				};
+				
+				_that.isListLoaded = true;
 				
 		},function(error){
 			console.log(error);
